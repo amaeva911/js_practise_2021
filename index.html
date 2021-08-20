@@ -13,6 +13,7 @@
         <input type="button" value="Показать alert()" onclick="window.alert('Привет, Константин!')">
         <input type="button" value="Показать confirm()" onclick="test_confirm()">
         <input type="button" value="Показать prompt()" onclick="test_prompt()">
+        <input type="button" value="Преобразование типов в консоли" onclick="test_parse()">
     </form>
 
     <script>
@@ -29,7 +30,7 @@
 
         function test_prompt() {
             var UserName = window.prompt('Как вас зовут?', 'Константин');
-            // *** если ничего не вписать - передается пустая строка
+            // *** [ошибка]  если ничего не вписать - передается пустая строка, а не null как в примере стр. 27
             if (UserName == "") {
                 alert('Пока, аноним!');
             }
@@ -41,7 +42,12 @@
 
         // Преобразование
         function test_parse() {
-
+            let v1 = '1';
+            let v2 = 1;
+            let v3 = v1 + v2;
+            // *** [ошибка] число + строка = строка, а не число, как в примере стр. 37
+            let v4 = v2 + v1;
+            console.log(typeof(v1) + ' v1, \n' + typeof(v2) + ' v2, \n' + typeof(v3) + ' v3, \n' + typeof(v4) + ' v4')
         }
 
     </script>
