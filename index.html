@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amaeva 2021 JS</title>
+</head>
+
+<body>
+    <form>
+        <input type="button" value="Показать alert()" onclick="window.alert('Привет, Константин!')">
+        <input type="button" value="Показать confirm()" onclick="test_confirm()">
+        <input type="button" value="Показать prompt()" onclick="test_prompt()">
+    </form>
+
+    <script>
+        function test_confirm() {
+            if (window.confirm('Нажмите ОК или Отмена')) { 
+                console.log('Вы нажати ОК'); 
+                document.write('Вы нажати ОК'); 
+            } 
+            else { 
+                console.log('Вы нажали Отмена'); 
+                document.write('Вы нажали Отмена'); 
+            };
+        };
+
+        function test_prompt() {
+            var UserName = window.prompt('Как вас зовут?', 'Константин');
+            // *** если ничего не вписать - передается пустая строка
+            if (UserName == "") {
+                alert('Пока, аноним!');
+            }
+            else {
+                // *** \n в document.write не работает
+                alert('Привет, ' + UserName + '!\nПередали значение типа: ' + typeof(UserName));
+            }
+        }
+
+        // Преобразование
+        function test_parse() {
+
+        }
+
+    </script>
+</body>
+
+</html>
