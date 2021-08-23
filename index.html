@@ -14,6 +14,8 @@
         <input type="button" value="Показать confirm()" onclick="test_confirm()">
         <input type="button" value="Показать prompt()" onclick="test_prompt()">
         <input type="button" value="Преобразование типов в консоли" onclick="test_parse()">
+        <input type="button" value="Операции" onclick="test_operations()">
+        <input type="button" value="Сравнение" onclick="test_compare()">
     </form>
 
     <script>
@@ -30,44 +32,82 @@
 
         function test_prompt() {
             var UserName = window.prompt('Как вас зовут?', 'Константин');
-            // *** [ошибка]  если ничего не вписать - передается пустая строка, а не null как в примере стр. 27
-            if (UserName == "") {
-                alert('Пока, аноним!');
-            }
+            
+            /* *** [ошибка 1]  если ничего не вписать - передается пустая строка, а не null как в примере стр. 27. 
+            null получаем только когда нажата кнопка Отмена.
+            Обработала нажатие на Отмена ниже */
+
+            if  (UserName ||  UserName == '') {  
+                if (UserName == "") {
+                    alert('Пока, аноним!' + UserName + '!\nПередали значение типа: ' + typeof(UserName));
+                }
+                else {
+                    // *** \n в document.write не работает
+                    alert('Привет, ' + UserName + '!\nПередали значение типа: ' + typeof(UserName));
+                }
+            } 
             else {
-                // *** \n в document.write не работает
-                alert('Привет, ' + UserName + '!\nПередали значение типа: ' + typeof(UserName));
-            }
-        }
+                alert('Пока, отказник! \n' + UserName + '\nПередали значение типа: ' + typeof(UserName));
+            };
+        };
 
         // Преобразование
         function test_parse() {
-            let v1 = '1';
+            let v1 = '2.1';
             let v2 = 1;
             let v3 = v1 + v2;
-            // *** [ошибка] число + строка = строка, а не число, как в примере стр. 37
+            // *** [ошибка 2] число + строка = строка, а не число, как в примере стр. 37. Любое сложение числа со строкой дает строку.
             let v4 = v2 + v1;
-<<<<<<< HEAD
-
             let v5 = parseInt(v2);
-            // v6 всё равно number, но значение 1.1, если применить parseInt(v1), значение будет сохранено 1
+            // v6 всё равно number, но значение 2.1, если применить parseInt(v1), значение будет сохранено 2
             let v6 = parseFloat(v1);
             let v7 = parseInt(v1);
+            let v8 = '41 + 1';
+            // v9 наличие пробелов или их отсутствие в первоначальном выражении не влияет на результат
+            let v9 = eval(v8);
 
             console.log(
-                typeof(v1) + ' - ' + v1 + ' - v1, \n' + 
-                typeof(v2) + ' - ' + v2 + ' - v2, \n' + 
-                typeof(v3) + ' - ' + v3 + ' - v3, \n' + 
-                typeof(v4) + ' - ' + v4 + ' - v4 \n' + 
-                typeof(v5) + ' - ' + v5 + ' - v5 \n' + 
-                typeof(v6) + ' - ' + v6 + ' - v6 \n' +
-                typeof(v7) + ' - ' + v7 + ' - v7 \n'
-                )
-=======
-            console.log(typeof(v1) + ' v1, \n' + typeof(v2) + ' v2, \n' + typeof(v3) + ' v3, \n' + typeof(v4) + ' v4')
->>>>>>> parent of 11a93ec (1 error)
-        }
+                typeof(v1) + ' - ' + v1 + '    // v1 = "2.1", \n' + 
+                typeof(v2) + ' - ' + v2 + '      // v2 = 1, \n' + 
+                typeof(v3) + ' - ' + v3 + '   // v3 = v1 + v2, \n' + 
+                typeof(v4) + ' - ' + v4 + '   // v4 = v2 + v1, \n' + 
+                typeof(v5) + ' - ' + v5 + '      // v5 = parseInt(v2), \n' + 
+                typeof(v6) + ' - ' + v6 + '    // v6 = parseFloat(v1), \n' +
+                typeof(v7) + ' - ' + v7 + '      // v7 = parseInt(v1), \n' +
+                typeof(v8) + ' - ' + v8 + ' // v8 = "41 + 1", \n' +
+                typeof(v9) + ' - ' + v9 + '     // v9 = eval(v8), \n'
+                );
+        };
 
+        // Операции
+        function test_operations() {
+            let a = 12; 
+            let b = 5;
+            let c = a % b; // a %= b - аналогичная запись - остаток от деления, деление по модулю, модуль деления
+            let d = a / b; // итог с возможной дробной частью до 16 знаков после точки
+            console.log(c + ' // 12 % 5');
+            console.log(d + ' // 12 / 5');
+            console.log(parseInt(d) + ' // 12 / 5'); // выделение целого после деления, значение после точки откидывается
+
+            console.log(~a);
+        };
+
+        // Сравнение
+        function test_compare() {
+            let a = 3;
+            let b = '3';
+            let abc;
+             
+            console.log(a == b); // true
+            console.log(a === b); // false
+
+            // если console.log содержит вычисление, то конкатенация не работает (игнорируются строки), выводится только вычисление
+            console.log(a == b + "123"); // false
+            console.log(a === b + "123"); // false
+
+            console.log(abc  == undefined); // true, если abc = undefined | null
+            console.log(abc  === undefined); // true - только если abc = undefined!);
+        }
     </script>
 </body>
 
