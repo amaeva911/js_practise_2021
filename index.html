@@ -42,11 +42,12 @@
 
         // Преобразование
         function test_parse() {
-            let v1 = '1.1';
+            let v1 = '1';
             let v2 = 1;
             let v3 = v1 + v2;
             // *** [ошибка] число + строка = строка, а не число, как в примере стр. 37
             let v4 = v2 + v1;
+<<<<<<< HEAD
 
             let v5 = parseInt(v2);
             // v6 всё равно number, но значение 1.1, если применить parseInt(v1), значение будет сохранено 1
@@ -62,6 +63,9 @@
                 typeof(v6) + ' - ' + v6 + ' - v6 \n' +
                 typeof(v7) + ' - ' + v7 + ' - v7 \n'
                 )
+=======
+            console.log(typeof(v1) + ' v1, \n' + typeof(v2) + ' v2, \n' + typeof(v3) + ' v3, \n' + typeof(v4) + ' v4')
+>>>>>>> parent of 11a93ec (1 error)
         }
 
     </script>
