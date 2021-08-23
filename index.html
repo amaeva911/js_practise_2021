@@ -49,15 +49,19 @@
             let v4 = v2 + v1;
 
             let v5 = parseInt(v2);
-            // v6 всё равно number, хотя в примере float стр. 38
+            // v6 всё равно number, но значение 1.1, если применить parseInt(v1), значение будет сохранено 1
             let v6 = parseFloat(v1);
+            let v7 = parseInt(v1);
 
             console.log(
-                typeof(v1) + ' v1, \n' + 
-                typeof(v2) + ' v2, \n' + 
-                typeof(v3) + ' v3, \n' + 
-                typeof(v4) + ' v4 \n' + 
-                typeof(v5) + ' v5 \n' + typeof(v6) + ' - ' + v6 + ' - v6 \n')
+                typeof(v1) + ' - ' + v1 + ' - v1, \n' + 
+                typeof(v2) + ' - ' + v2 + ' - v2, \n' + 
+                typeof(v3) + ' - ' + v3 + ' - v3, \n' + 
+                typeof(v4) + ' - ' + v4 + ' - v4 \n' + 
+                typeof(v5) + ' - ' + v5 + ' - v5 \n' + 
+                typeof(v6) + ' - ' + v6 + ' - v6 \n' +
+                typeof(v7) + ' - ' + v7 + ' - v7 \n'
+                )
         }
 
     </script>
